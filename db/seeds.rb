@@ -32,8 +32,9 @@ study_sessions.each do |study_sessions_hash|
   instructor_id = study_sessions_hash["instructor_id"]
   student_id = study_sessions_hash["student_id"]
   study_topic = study_sessions_hash["study_topic"]
+  is_completed = study_sessions_hash["is_completed"]
 
-  new_session = StudySession.new(instructor_id: instructor_id, student_id: student_id, study_topic: study_topic)
+  new_session = StudySession.new(instructor_id: instructor_id, student_id: student_id, study_topic: study_topic, is_completed: is_completed)
   new_session.save
 end
 
