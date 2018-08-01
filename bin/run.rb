@@ -8,16 +8,17 @@ study_sessions = JSON.parse(RestClient.get("https://sheetsu.com/apis/v1.0su/7fbb
 
 #================= TEST SOME SHIT OUT!!! ======================
 student_f_names = students.map do |student_hash|
-student_hash["first_name"]
+  student_hash["first_name"]
 end
 
 student_l_names = students.map do |student_hash|
-student_hash["last_name"]
+  student_hash["last_name"]
 end
 
 students.map do |student_hash|
   # bob = Object.new(student_hash["first_name"],student_hash["last_name"],student_hash["grade"])
 end
+
 #================= TEST SOME SHIT OUT!!! ======================
 
 binding.pry
