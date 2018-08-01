@@ -1,6 +1,7 @@
 require 'bundler'
 require 'rest-client'
 require 'json'
+require 'tty-prompt'
 require 'pry'
 Bundler.require
 
