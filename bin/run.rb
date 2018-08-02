@@ -11,6 +11,21 @@ def run_me
 
       when "Learn"
 
+        # puts "Please enter Student ID"
+        # user_id = gets.chomp
+        puts "Please enter first_name"
+        first = gets.chomp
+        puts "Please enter last_name"
+        last = gets.chomp
+        puts "Please enter grade"
+        grade = gets.chomp
+        # becky = Student.get_student(user_id)
+
+        # val_grade = Student.validate_grade(grade)
+
+        Student.new(first, last, grade)
+
+        binding.pry
       when "About"
         printAbout # method defined below
       when "Exit"
@@ -48,6 +63,7 @@ def run_me
         #======== Instructor options ============
 
 
+        # instructor = Intructor.new("user_id")
 
 
         #======== Student options ============

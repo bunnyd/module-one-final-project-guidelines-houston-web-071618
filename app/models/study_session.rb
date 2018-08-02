@@ -4,8 +4,9 @@ class StudySession < ActiveRecord::Base
 
   # iterate through self.all to return study_topic.
   def self.all_study_topics
-    all.map do |session|
+    topics = all.map do |session|
       session.study_topic
     end
+    topics.uniq
   end
 end

@@ -13,10 +13,12 @@ class Instructor < ActiveRecord::Base
     end
   end
 
-  def get_instructor(input_id)
-    # puts "Please enter Instructor ID"
-    # user_id = gets.chomp
+  def self.get_instructor(input_id) #takes instructor id and returns full name
     instructor = Instructor.find_by(id: input_id)
     instructor.full_name
   end
+
+  # def self.get_sessions
+  #
+  # end
 end
