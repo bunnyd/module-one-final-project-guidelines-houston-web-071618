@@ -14,11 +14,14 @@ class Instructor < ActiveRecord::Base
   end
 
   def self.get_instructor(input_id) #takes instructor id and returns full name
-    instructor = Instructor.find_by(id: input_id)
-    instructor.full_name
+    Instructor.find_by(id: input_id)
   end
 
-  # def self.get_sessions
-  #
-  # end
+  def self.get_instructor_by_name(lName) #takes instructor id and returns full name
+    Instructor.find_by(last_name: lName)
+  end
+
+  def get_sessions(instructor)
+    instructor.study_sessions
+  end
 end

@@ -48,7 +48,7 @@ end
 seed_students
 seed_instructors
 seed_study_sessions
-binding.pry
+# binding.pry
 
 
 #============================================================================

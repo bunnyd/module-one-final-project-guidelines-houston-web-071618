@@ -14,8 +14,8 @@ class Student < ActiveRecord::Base
   end
 
   def self.get_student(input_id) #takes student id and returns full name
-    student = Student.find_by(id: input_id)
-    student.full_name # nd to scott - maybe you can return "Hi #{the return value for this method}!" on the front-end?
+    Student.find_by(id: input_id)
+     # nd to scott - maybe you can return "Hi #{the return value for this method}!" on the front-end?
   end
 
   # def validate_grade(grade)
@@ -25,17 +25,19 @@ class Student < ActiveRecord::Base
 
   def self.create_student(first_name, last_name, grade)
     # if validate_grade(grade)
-      Student.new(first_name, last_name, grade)
+      new_student = Student.new(first_name: first_name, last_name: last_name, grade: grade)
+      new_student.save
     # else
     #   puts "Grade must be between 1 and 8."
     # end
   end
 
   def create_session(instructor_id, student_id, study_topic)
-    session = StudySession.new(instructor_id, student_id, study_topic, false)
+    session = StudySession.new(instructor_id: instructor_id, student_id: student_id, study_topic: study_topic, is_completed: false)
+    session.save
   end
 
-  # def method_name
-  #
-  # end
+  def get_sessions(student)
+    student.study_sessions
+  end
 end
