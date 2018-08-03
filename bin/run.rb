@@ -69,21 +69,25 @@ def studentPortal
   # > view ONLY their own study_sessions
   # > Logout/Go back
   ##########
+  stu_menu = true
+  until(!stu_menu)
+    clearScreen
+    choice = $prompt.select("Select an option", %w(Login Create-Account <<back<<))
 
-  choice = $prompt.select("Select an option", %w(Login Create-Account <<back<<))
 
+    case choice
 
-  case choice
-
-    when "Login"
-      #login
-      student_login
-    when "Create-Account"
-      #create student
-      createStudent
-    else
-    #<<back<< selected goes to main loop
-  end#case (choice)
+      when "Login"
+        #login
+        student_login
+      when "Create-Account"
+        #create student
+        createStudent
+      else
+      #<<back<< selected goes to main loop
+      stu_menu = false
+    end#case (choice)
+  end#untilLoop
 end#end studentPortal
 
 def student_login #------------------
