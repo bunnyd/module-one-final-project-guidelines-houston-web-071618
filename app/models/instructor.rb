@@ -21,7 +21,7 @@ class Instructor < ActiveRecord::Base
     Instructor.find_by(last_name: lName)
   end
 
-  def get_sessions(instructor)
+  def self.get_sessions(instructor)
     instructor.study_sessions
   end
 end

@@ -9,4 +9,9 @@ class StudySession < ActiveRecord::Base
     end
     topics.uniq
   end
+  def self.study_session_by_instructor(instructor)
+    self.all.select do |session|
+      session.instructor == instructor
+    end
+  end#instructor
 end

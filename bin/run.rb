@@ -102,7 +102,7 @@ def student_login #------------------
       puts "YOU ARE THE WEAKEST LINK!"
 
     end
-  binding.pry
+  #binding.pry
 
 
 end#end login
@@ -155,7 +155,7 @@ def createStudent
   q.validate /^[a-z ,.'-]+$/i
   end
   #prompts user for his/her grade level and checks that is is 1-8
-  grade = $prompt.ask("What is your grade level?", required: true) do |q|
+  grade = $prompt.ask("What is your grade level (1-8)?", required: true) do |q|
   q.validate /^[1-8]{1}$/
   end
 
@@ -176,7 +176,7 @@ def createStudent
 end#createStudent
 
 def view_student_sessions(student)
-  sessionArray = student.get_sessions(student)
+  sessionArray = Student.get_sessions(student)
   puts "INSTRUCTOR NAME || STUDENT NAME || TOPIC"
   puts "----------------------------------------"
   sessionArray.each do |session|
@@ -208,7 +208,7 @@ def instructorPortal
   password = $prompt.mask("Please type in the instructor password:")
   if password == "love"
 
-    instructor_login
+    instructor_give_id
       instructorRun = true
       until(!instructorRun)
         clearScreen
@@ -224,6 +224,7 @@ def instructorPortal
             view_instructor_sessions($current_instructor)
           when "Approve-Session"
             #Approve
+
             approve_session($current_instructor)
           when "Delete-Session"
             #Delete
@@ -239,7 +240,7 @@ def instructorPortal
   end#password check
 end
 
-def instructor_login
+def instructor_give_id
   clearScreen
 
   #ask for user id
@@ -258,7 +259,7 @@ def instructor_login
 end
 
 def view_instructor_sessions(instructor)
-  sessionArray = instructor.get_sessions(instructor)
+  sessionArray = StudySession.study_session_by_instructor(instructor)
   puts "INSTRUCTOR NAME || STUDENT NAME || TOPIC || STATUS"
   puts "--------------------------------------------------"
   sessionArray.each do |session|
@@ -285,7 +286,7 @@ end#view_sessions
 def approve_session(instructor)
   # get all sessions with said instructor
   view_instructor_sessions(instructor)
-  sessionArray = instructor.get_sessions(instructor)
+  sessionArray = StudySession.study_session_by_instructor(instructor)
   displayArray = sessionArray.map{|session| "#{session.id},#{session.student.full_name},#{session.study_topic}"}
   approveArray = $prompt.select("Select Study Sessions to Approve:", displayArray)#per_page: 4
   sesh_id = approveArray.split(",").first
@@ -297,10 +298,11 @@ def approve_session(instructor)
 
   puts "You completed the session for Session ID##{sesh_id}."
   $prompt.ask("hit enter to continue...")
+
 end#approve_session
 
 def delete_session(instructor)
-  sessionArray = instructor.get_sessions(instructor)
+  sessionArray = StudySession.study_session_by_instructor(instructor)
   displayArray = sessionArray.map{|session| "#{session.id},#{session.student.full_name},#{session.study_topic}"}
   approveArray = $prompt.select("Select Study Sessions to Approve:", displayArray)#per_page: 4
   sesh_id = approveArray.split(",").first
@@ -334,15 +336,29 @@ def printAbout
   puts "= STUDENTS AND INSTRUCTORS TO CREATE AND ENGAGE IN  ="
   puts "= EDUCATIONAL ACTIVITES! THE FOLLOWING OUTLINES THE ="
   puts "= AVAILBLE OPTIONS FOR USERS:                       ="
+  puts "=                                                   ="
   puts "=   STUDENTS:                                       ="
   puts "=     NEW STUDENT                                   ="
   puts "=     CURRENT STUDENT                               ="
-  puts "=   INSTRUCTORS:                                    ="
-  puts "=     NEW INSTRUCTOR                                ="
+  puts "=       > CREATE STUDY SESSION                      ="
+  puts "=       > VIEW STUDY SESSION                        ="
+  puts "=       > BAIL ON A SESSION  (VERSION 2.3+ ONLY)    ="
+  puts "=                                                   ="
+  puts "=   INSTRUCTORS: (NOW WITH PASSWORD PROTECTION)     ="
+  puts "=     NEW INSTRUCTOR (PAID VERSION ONLY)            ="
   puts "=     CURRENT INSTRUCTOR                            ="
+  puts "=       > VIEW STUDY SESSION                        ="
+  puts "=       > APPROVE STUDY SESSION                     ="
+  puts "=       > DELETE COMPLETED SESSIONS (BUGGED)        ="
+  puts "=       > VIEW STUDY SESSION                        ="
+  puts "=                                                   ="
+  puts "=   ---------------------------------------------   ="
+  puts "=                                                   ="
+  puts "=          GENERAL OO RELATIONSHIP OUTLINE          ="
   puts "=                                                   ="
   puts "=  INSTRUCTORS --->---STUDYSESSION---<---STUDENTS   ="
-  puts "= Credits: Nancy Do, Scott Ungchusri                ="
+  puts "=                                                   ="
+  puts "=  Credits: Nancy Do, Scott Ungchusri               ="
   puts "====================================================="
   puts ""
   $prompt.ask("hit enter to continue")

@@ -37,7 +37,7 @@ class Student < ActiveRecord::Base
     session.save
   end
 
-  def get_sessions(student)
+  def self.get_sessions(student)
     student.study_sessions
   end
 end
