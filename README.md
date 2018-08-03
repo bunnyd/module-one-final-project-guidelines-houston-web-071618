@@ -1,49 +1,60 @@
-# Module One Final Project Guidelines
+# Super Tutor 2.0
 
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
+This main purpose of this application is to do 2 things:
+  1. Allow students (grade 1-8) to schedule a tutoring session with an instructor
+  2. Allow instructors to keep track of their sessions by viewing, completing, and/or deleting them.
 
-For your final project, we'll be building a Command Line database application.
+# Instructions:
+There are 4 menu options that are given to all users. See more details on each of the options listed.
 
-## Project Requirements
+## Learn
 
-### Option One - Data Analytics Project
+### Students:
+#### New student:
+##### Goal: Create a new student account.
+1. Select 'Learn'.
+2. Select the 'Student' account type.
+3. Select 'Create-Account'.
+4. Type in your first name.
+5. Type in your last name.
+6. Type in your grade level (1-8).
+7. If the information looks correct, type ‘y’.
+8. Your student ID will appear. Remember this in order to log in.
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
-3. You should seed your database using data that you collect either from a CSV, a website by scraping, or an API.
-4. Your models should have methods that answer interesting questions about the data. For example, if you've collected info about movie reviews, what is the most popular movie? What movie has the most reviews?
-5. You should provide a CLI to display the return values of your interesting methods.  
-6. Use good OO design patterns. You should have separate classes for your models and CLI interface.
+#### Current student:
+##### Goal: Log in as a student. Create and view tutoring sessions.
+1. Select ‘Login’.
+2. Type in your student ID.
+3. In the student menu, you have a few options.
+  a. Create-Session - Select this to create a tutoring session.
+    i. Type in the study topic for the session.
+  b. Select the instructor you want to include in the session.
+  c. View-Sessions - See all of your current sessions
+    i. Logout - Exit out of the student menu.
 
-### Option Two - Command Line CRUD App
+### Instructors:
+The instructor has a variety of methods that allow for them to manipulate the data. They can update current sessions, delete them, and view the subset of data that applies to the instance of the instructor. Below is a guide to logging in as an instructor.
+##### Goal: login as an instructor and have access to instructor methods.
+    1. Select 'Learn'
+    2. Select 'Instructor'
+    3. Enter secret password 'love'
+    4. Enter instructor id (1-5) we don’t have an option to create more so the # is set
+    5. In the instructor menu you have a few options.
+     	  a. View Sessions - allows the instructor to view sessions
+                they will be involved in.
+      	b. Approve Sessions - allows the instructor to approve then
+                session and change the status.
+      	c. Delete Session - an instructor has the power to straight up
+               delete a session from record.
+      	d. <<back<< - breaks out of the instructor menu.
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have a minimum of three models.
-3. You should build out a CLI to give your user full CRUD ability for at least one of your resources. For example, build out a command line To-Do list. A user should be able to create a new to-do, see all todos, update a todo item, and delete a todo. Todos can be grouped into categories, so that a to-do has many categories and categories have many to-dos.
-4. Use good OO design patterns. You should have separate models for your runner and CLI interface.
 
-### Brainstorming and Proposing a Project Idea
 
-Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above.  You must have a minimum of four [user stories](https://en.wikipedia.org/wiki/User_story) to help explain how a user will interact with your app.  A user story should follow the general structure of `"As a <role>, I want <goal/desire> so that <benefit>"`. In example, if we were creating an app to randomly choose nearby restaurants on Yelp, we might write:
+## About
+Prints out an ascii-art summary of the README. It shows the simple structure of the program and gives a simple many-many diagram for the classes used as well as credits.
 
-* As a user, I want to be able to enter my name to retrieve my records
-* As a user, I want to enter a location and be given a random nearby restaurant suggestion
-* As a user, I should be able to reject a suggestion and not see that restaurant suggestion again
-* As a user, I want to be able to save to and retrieve a list of favorite restaurant suggestions
+## Show-all
+Prints out all sessions, students, and instructors.
 
-## Instructions
-
-1. Fork and clone this repository.
-2. Build your application. Make sure to commit early and commit often. Commit messages should be meaningful (clearly describe what you're doing in the commit) and accurate (there should be nothing in the commit that doesn't match the description in the commit message). Good rule of thumb is to commit every 3-7 mins of actual coding time. Most of your commits should have under 15 lines of code and a 2 line commit is perfectly acceptable.
-3. Make sure to create a good README.md with a short description, install instructions, a contributors guide and a link to the license for your code.
-4. Make sure your project checks off each of the above requirements.
-5. Prepare a video demo (narration helps!) describing how a user would interact with your working project.
-    * The video should:
-      - Have an overview of your project.(2 minutes max)
-6. Prepare a presentation to follow your video.(3 minutes max)
-    * Your presentation should:
-      - Describe something you struggled to build, and show us how you ultimately implemented it in your code.
-      - Discuss 3 things you learned in the process of working on this project.
-      - Address, if anything, what you would change or add to what you have today?
-      - Present any code you would like to highlight.   
-7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
+## Exit
+Exit allows you to close out of the application.

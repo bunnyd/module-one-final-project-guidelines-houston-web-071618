@@ -18,11 +18,6 @@ class Student < ActiveRecord::Base
      # nd to scott - maybe you can return "Hi #{the return value for this method}!" on the front-end?
   end
 
-  # def validate_grade(grade)
-  #   # validates :value, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 8 }
-  #   validates :grade, :inclusion => { :in => 1..8 }
-  # end
-
   def self.create_student(first_name, last_name, grade)
     # if validate_grade(grade)
       new_student = Student.new(first_name: first_name, last_name: last_name, grade: grade)

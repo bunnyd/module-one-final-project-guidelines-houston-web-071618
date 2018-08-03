@@ -19,7 +19,7 @@ def run_me
   until(!$run)
     # ====== WELCOME
     welcomeMessage
-    choice = $prompt.select("Select an Option", %w(Learn About Exit))
+    choice = $prompt.select("Select an Option", %w(Learn About Show-all Exit))
     # ====== WELCOME
 
     case choice
@@ -30,6 +30,9 @@ def run_me
       when "About"
         printAbout # method defined below
       #------------------ABOUT--------------------
+      when "Show-all"
+      show_all # method defined below
+    #------------------SHOW_ALL--------------------
       when "Exit"
         exitHandler
       else
@@ -39,6 +42,42 @@ def run_me
     end#end of the choice case
   end#Until loop
 end#run_me
+
+def show_all
+  clearScreen
+  puts "Study Sessions"
+  puts "--------------------------------------------------"
+  puts "ID || INSTRUCTOR ID || STUDENT ID || TOPIC || STATUS"
+  
+  study_sessions = StudySession.all
+  study_sessions.each do |session|
+    puts "#{session.id} | #{session.instructor_id}, #{session.student_id}, #{session.study_topic}, #{session.is_completed}"
+  end
+  $prompt.ask("hit enter to continue...")
+
+  clearScreen
+  puts "Students"
+  puts "--------------------------------------------------"
+  puts "ID || FIRST NAME || LAST NAME || GRADE"
+
+  students = Student.all
+  students.each do |student|
+    puts "#{student.id} | #{student.first_name}, #{student.last_name}, #{student.grade}"
+  end
+  $prompt.ask("hit enter to continue...")
+
+  clearScreen
+  puts "Instructors"
+  puts "--------------------------------------------------"
+  puts "ID || FIRST NAME || LAST NAME || SPECIALTY"
+
+  instructors = Instructor.all
+  instructors.each do |instructor|
+    puts "#{instructor.id} | #{instructor.first_name}, #{instructor.last_name}, #{instructor.specialty}"
+  end
+  $prompt.ask("hit enter to continue...")
+
+end
 
 def learnMenu
   clearScreen
@@ -144,7 +183,9 @@ def create_session(student)
   verified_i = Instructor.get_instructor_by_name(selected_instructor.split("_").last)
 
   session = student.create_session(verified_i.id, student.id, study_topic)
+  puts "--------------------------------------------------"
   puts "Congratulations! you made a session!"
+  puts "--------------------------------------------------"
   $prompt.ask("hit enter to continue...")
 end#create_session
 
@@ -172,9 +213,9 @@ def createStudent
     if(true)#FOR TESTING. REPLACE WITH A METHODS TO COMPARE STUDENTS
       puts "Thank you #{new_student.full_name}. Your account was successfully created!"
       new_student.save
-      puts "----------------------------------------------------------------------"
+      puts "--------------------------------------------------"
       puts "Your student ID is #{new_student.id}. Remember this to log in."
-      puts "----------------------------------------------------------------------"
+      puts "--------------------------------------------------"
 
       $prompt.ask("hit enter to continue...")
     else
@@ -244,7 +285,9 @@ def instructorPortal
         end#case (choice)
       end#until method
   else
+    puts "--------------------------------------------------"
     puts "You are not Authorized to enter the Instructor Portal, scrub!"
+    puts "--------------------------------------------------"
     $prompt.ask("hit enter to continue...")
   end#password check
 end
@@ -262,7 +305,9 @@ def instructor_give_id
       # SUCCESSFUL LOGIN LEADS INTO MENU WHERE $current_student can chose stuff
 
     else
-      puts "YOU'RE NOT IN THE DATABASE!"
+      puts "--------------------------------------------------"
+      puts "YOU'RE NOT IN THE DATABASE! GO HOME!"
+      puts "--------------------------------------------------"
       $prompt.ask("hit enter to continue...")
     end
 end
@@ -304,8 +349,9 @@ def approve_session(instructor)
   select_session = StudySession.find_by(id: sesh_id)
   select_session.is_completed  = true
   select_session.save
-
+  puts "---------------------------------------------------------"
   puts "You completed the session for Session ID##{sesh_id}."
+  puts "---------------------------------------------------------"
   $prompt.ask("hit enter to continue...")
 
 end#approve_session
@@ -318,7 +364,9 @@ def delete_session(instructor)
 
   select_session = StudySession.find_by(id: sesh_id)
   select_session.is_completed  = true
+  puts "---------------------------------------------------------"
   puts "You have deleted the session for Session ID##{sesh_id}."
+  puts "---------------------------------------------------------"
   select_session.delete
 
   $prompt.ask("hit enter to continue...")
