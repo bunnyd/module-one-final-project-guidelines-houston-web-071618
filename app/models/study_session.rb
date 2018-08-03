@@ -14,4 +14,9 @@ class StudySession < ActiveRecord::Base
       session.instructor == instructor
     end
   end#instructor
+  def self.study_session_by_student(student)
+    self.all.select do |session|
+      session.student == student
+    end
+  end#student
 end

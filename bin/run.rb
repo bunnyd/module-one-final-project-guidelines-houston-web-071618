@@ -168,15 +168,20 @@ def createStudent
     if(true)#FOR TESTING. REPLACE WITH A METHODS TO COMPARE STUDENTS
       puts "Thank you #{new_student.full_name}. Your account was successfully created!"
       new_student.save
+      puts "----------------------------------------------------------------------"
+      puts "Your student ID is #{new_student.id}. Remember this to log in."
+      puts "----------------------------------------------------------------------"
+
       $prompt.ask("hit enter to continue...")
     else
       puts "Sorry that account has been created already. Please pick a different name"
     end
   end
+
 end#createStudent
 
 def view_student_sessions(student)
-  sessionArray = Student.get_sessions(student)
+  sessionArray = StudySession.study_session_by_student(student)
   puts "INSTRUCTOR NAME || STUDENT NAME || TOPIC"
   puts "----------------------------------------"
   sessionArray.each do |session|
